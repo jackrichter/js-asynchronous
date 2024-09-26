@@ -84,7 +84,7 @@ const getCountryAndNeighbor = country => {
 
   request.addEventListener('load', function () {
     const [data] = JSON.parse(this.responseText);
-    console.log(data);
+    // console.log(data);
 
     // Render first country
     renderCountry(data);
@@ -101,7 +101,7 @@ const getCountryAndNeighbor = country => {
 
     request2.addEventListener('load', function () {
       const [data2] = JSON.parse(this.responseText);
-      console.log(data2);
+      // console.log(data2);
 
       // Render neighbor country
       renderCountry(data2, 'neighbor');
@@ -119,14 +119,18 @@ getCountryAndNeighbor('usa');
 
 // Another callback-hell example
 setTimeout(() => {
-  console.log('1 second passed');
+  // console.log('1 second passed');
   setTimeout(() => {
-    console.log('2 seconds passed');
+    // console.log('2 seconds passed');
     setTimeout(() => {
-      console.log('3 seconds passed');
+      // console.log('3 seconds passed');
       setTimeout(() => {
-        console.log('4 seconds passed');
+        // console.log('4 seconds passed');
       }, 1000);
     }, 1000);
   }, 1000);
 }, 1000);
+
+///////////////////////////////////////
+
+/** Promises and The Fetch API */
