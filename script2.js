@@ -43,9 +43,22 @@ const renderCountry = (data, className = '') => {
 // };
 
 const getCountryData = function (country) {
+  // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then(response => response.json())
-    .then(data => renderCountry(data[0]));
+
+    /** Chaining Promises */
+    .then(data => {
+      renderCountry(data[0]);
+      const neighbor = data[0].borders[0];
+
+      if (!neighbor) return;
+
+      // Country 2
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data[0], 'neighbor'));
 };
 
 getCountryData('portugal');
