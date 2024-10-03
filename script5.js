@@ -70,14 +70,26 @@ const whereAmI = async () => {
 
     // Render country
     renderCountry(data[0]);
+
+    return `2: You are in ${dataGeo.city}, ${dataGeo.countryName}`;
   } catch (err) {
     console.error(`${err}💥`);
     renderError(`💥 ${err.message}`);
+
+    // Reject Promise returned from async function
+    throw err;
   }
 };
 
-whereAmI();
+// const city = whereAmI();
+// console.log(city);
 // console.log('FIRST');
+
+// console.log('1: Getting location');
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log('3: Finished'));
 
 /** Adding Error Handling With try...catch */
 // try {
@@ -87,3 +99,24 @@ whereAmI();
 // } catch (err) {
 //   alert(err.message);
 // }
+
+///////////////////////////////////////
+
+/** Returning Values from Async Functions */
+
+console.log('1: Getting location');
+// Using IIFE Obs. IMPORTANT!!
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(city);
+  } catch (err) {
+    console.error(`2: ${err.message} 💥`);
+  }
+  console.log('3: Finished');
+})();
+
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log('3: Finished'));
